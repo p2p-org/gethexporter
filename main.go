@@ -3,11 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/ethereum/go-ethereum"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/ethclient"
 	"log"
 	"math/big"
 	"net/http"
@@ -15,6 +10,12 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/Fantom-foundation/go-ethereum"
+	"github.com/Fantom-foundation/go-ethereum/common"
+	"github.com/Fantom-foundation/go-ethereum/common/hexutil"
+	"github.com/Fantom-foundation/go-ethereum/core/types"
+	"github.com/Fantom-foundation/go-ethereum/ethclient"
 )
 
 var (
@@ -167,33 +168,34 @@ func MetricsHttp(w http.ResponseWriter, r *http.Request) {
 	}
 	CalculateTotals(block)
 
-	allOut = append(allOut, fmt.Sprintf("geth_block %v", block.NumberU64()))
-	allOut = append(allOut, fmt.Sprintf("geth_seconds_last_block %0.2f", time.Now().Sub(geth.LastBlockUpdate).Seconds()))
-	allOut = append(allOut, fmt.Sprintf("geth_block_transactions %v", len(block.Transactions())))
-	allOut = append(allOut, fmt.Sprintf("geth_block_value %v", ToEther(geth.TotalEth)))
-	allOut = append(allOut, fmt.Sprintf("geth_block_gas_used %v", block.GasUsed()))
-	allOut = append(allOut, fmt.Sprintf("geth_block_gas_limit %v", block.GasLimit()))
-	allOut = append(allOut, fmt.Sprintf("geth_block_nonce %v", block.Nonce()))
-	allOut = append(allOut, fmt.Sprintf("geth_block_difficulty %v", block.Difficulty()))
-	allOut = append(allOut, fmt.Sprintf("geth_block_uncles %v", len(block.Uncles())))
-	allOut = append(allOut, fmt.Sprintf("geth_block_size_bytes %v", geth.BlockSize))
-	allOut = append(allOut, fmt.Sprintf("geth_gas_price %v", geth.SugGasPrice))
-	allOut = append(allOut, fmt.Sprintf("geth_pending_transactions %v", geth.PendingTx))
-	allOut = append(allOut, fmt.Sprintf("geth_network_id %v", geth.NetworkId))
-	allOut = append(allOut, fmt.Sprintf("geth_contracts_created %v", geth.ContractsCreated))
-	allOut = append(allOut, fmt.Sprintf("geth_token_transfers %v", geth.TokenTransfers))
-	allOut = append(allOut, fmt.Sprintf("geth_eth_transfers %v", geth.EthTransfers))
-	allOut = append(allOut, fmt.Sprintf("geth_load_time %0.4f", geth.LoadTime))
+	allOut = append(allOut, fmt.Sprintf("ftm_block %v", block.NumberU64()))
+	allOut = append(allOut, fmt.Sprintf("ftm_seconds_last_block %0.2f", time.Now().Sub(geth.LastBlockUpdate).Seconds()))
+	allOut = append(allOut, fmt.Sprintf("ftm_block_transactions %v", len(block.Transactions())))
+	allOut = append(allOut, fmt.Sprintf("ftm_block_value %v", ToEther(geth.TotalEth)))
+	allOut = append(allOut, fmt.Sprintf("ftm_block_gas_used %v", block.GasUsed()))
+	allOut = append(allOut, fmt.Sprintf("ftm_block_gas_limit %v", block.GasLimit()))
+	allOut = append(allOut, fmt.Sprintf("ftm_block_nonce %v", block.Nonce()))
+	allOut = append(allOut, fmt.Sprintf("ftm_block_difficulty %v", block.Difficulty()))
+	allOut = append(allOut, fmt.Sprintf("ftm_block_uncles %v", len(block.Uncles())))
+	allOut = append(allOut, fmt.Sprintf("ftm_block_size_bytes %v", geth.BlockSize))
+	allOut = append(allOut, fmt.Sprintf("ftm_gas_price %v", geth.SugGasPrice))
+	allOut = append(allOut, fmt.Sprintf("ftm_pending_transactions %v", geth.PendingTx))
+	// Method eth.NetworkId doesn't work for fantom nodes and crash prometheus scraper
+	// allOut = append(allOut, fmt.Sprintf("ftm_network_id %v", geth.NetworkId))
+	allOut = append(allOut, fmt.Sprintf("ftm_contracts_created %v", geth.ContractsCreated))
+	allOut = append(allOut, fmt.Sprintf("ftm_token_transfers %v", geth.TokenTransfers))
+	allOut = append(allOut, fmt.Sprintf("ftm_eth_transfers %v", geth.EthTransfers))
+	allOut = append(allOut, fmt.Sprintf("ftm_load_time %0.4f", geth.LoadTime))
 
 	if geth.Sync != nil {
-		allOut = append(allOut, fmt.Sprintf("geth_known_states %v", int(geth.Sync.KnownStates)))
-		allOut = append(allOut, fmt.Sprintf("geth_highest_block %v", int(geth.Sync.HighestBlock)))
-		allOut = append(allOut, fmt.Sprintf("geth_pulled_states %v", int(geth.Sync.PulledStates)))
+		allOut = append(allOut, fmt.Sprintf("ftm_known_states %v", int(geth.Sync.KnownStates)))
+		allOut = append(allOut, fmt.Sprintf("ftm_highest_block %v", int(geth.Sync.HighestBlock)))
+		allOut = append(allOut, fmt.Sprintf("ftm_pulled_states %v", int(geth.Sync.PulledStates)))
 	}
 
 	for _, v := range addresses {
-		allOut = append(allOut, fmt.Sprintf("geth_address_balance{address=\"%v\"} %v", v.Address, ToEther(v.Balance).String()))
-		allOut = append(allOut, fmt.Sprintf("geth_address_nonce{address=\"%v\"} %v", v.Address, v.Nonce))
+		allOut = append(allOut, fmt.Sprintf("ftm_address_balance{address=\"%v\"} %v", v.Address, ToEther(v.Balance).String()))
+		allOut = append(allOut, fmt.Sprintf("ftm_address_nonce{address=\"%v\"} %v", v.Address, v.Nonce))
 	}
 
 	w.Write([]byte(strings.Join(allOut, "\n")))
