@@ -16,7 +16,8 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: "^1.15.10"
-      - run: go build main.go
+      - run: go get -v ../...
+      - run: go build .
       - uses: actions/download-artifact@v2
         with:
           name: gethexporter
