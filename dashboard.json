@@ -1,31 +1,4 @@
 {
-  "__inputs": [],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "5.4.2"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": "5.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "singlestat",
-      "name": "Singlestat",
-      "version": "5.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "text",
-      "name": "Text",
-      "version": "5.0.0"
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -42,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 1,
-  "id": null,
+  "id": 10,
+  "iteration": 1628877467988,
   "links": [
     {
       "icon": "info",
@@ -51,7 +25,7 @@
       "title": "Github Repo",
       "tooltip": "Visit Repo",
       "type": "link",
-      "url": "https://github.com/hunterlong/gethexporter"
+      "url": "https://github.com/p2p-org/gethexporter"
     },
     {
       "icon": "info",
@@ -73,6 +47,11 @@
         "rgb(255, 255, 255)",
         "#d44a3a"
       ],
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "format": "locale",
       "gauge": {
         "maxValue": 100,
@@ -124,10 +103,13 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "ftm_block",
+          "exemplar": true,
+          "expr": "ftm_block{instance=\"${instance:string}\"}",
           "format": "time_series",
           "instant": true,
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -146,91 +128,63 @@
       "valueName": "current"
     },
     {
-      "aliasColors": {
-        "Transactions": "#e0752d"
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
       },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 10,
       "gridPos": {
-        "h": 7,
+        "h": 6,
         "w": 12,
         "x": 4,
         "y": 0
       },
-      "id": 5,
-      "legend": {
-        "avg": true,
-        "current": false,
-        "max": true,
-        "min": true,
-        "show": true,
-        "total": false,
-        "values": true
+      "id": 34,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "lines": true,
-      "linewidth": 0,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      "pluginVersion": "7.5.10",
       "targets": [
         {
-          "expr": "ftm_block_transactions",
-          "format": "time_series",
-          "instant": false,
-          "intervalFactor": 1,
-          "legendFormat": "Transactions",
+          "exemplar": true,
+          "expr": "ftm_address_balance{address=\"0x120Af64d9B7bB555cd2Abc47A945d126ddeD0376\",instance=\"${instance:string}\"}",
+          "interval": "",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Transactions",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "locale",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": 1
-      }
+      "title": "Balance",
+      "type": "stat"
     },
     {
       "aliasColors": {
@@ -241,13 +195,20 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 16,
         "y": 0
       },
+      "hiddenSeries": false,
       "id": 27,
       "legend": {
         "avg": false,
@@ -262,7 +223,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
+      "pluginVersion": "7.5.10",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -272,7 +237,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "ftm_eth_transfers",
+          "exemplar": true,
+          "expr": "ftm_eth_transfers{instance=\"${instance:string}\"}",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -281,8 +247,10 @@
           "refId": "A"
         },
         {
-          "expr": "ftm_token_transfers",
+          "exemplar": true,
+          "expr": "ftm_token_transfers{instance=\"${instance:string}\"}",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 2,
           "legendFormat": "Tokens",
           "refId": "B"
@@ -338,7 +306,12 @@
         "rgb(73, 204, 39)",
         "#d44a3a"
       ],
+      "datasource": null,
       "decimals": 2,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "format": "locale",
       "gauge": {
         "maxValue": 100,
@@ -390,10 +363,13 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "ftm_block_value",
+          "exemplar": true,
+          "expr": "ftm_block_value{instance=\"${instance:string}\"}",
           "format": "time_series",
           "instant": true,
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -420,6 +396,11 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "format": "s",
       "gauge": {
         "maxValue": 120,
@@ -471,10 +452,13 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "ftm_seconds_last_block",
+          "exemplar": true,
+          "expr": "ftm_seconds_last_block{instance=\"${instance:string}\"}",
           "format": "time_series",
           "instant": true,
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -494,35 +478,44 @@
     },
     {
       "aliasColors": {
-        "ETH Transfers": "#629e51"
+        "Transactions": "#e0752d"
       },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "fill": 10,
+      "fillGradient": 0,
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 12,
         "x": 4,
-        "y": 7
+        "y": 6
       },
-      "id": 14,
+      "hiddenSeries": false,
+      "id": 5,
       "legend": {
-        "alignAsTable": false,
-        "avg": false,
+        "avg": true,
         "current": false,
-        "max": false,
-        "min": false,
-        "rightSide": false,
+        "max": true,
+        "min": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
-      "linewidth": 1,
+      "linewidth": 0,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
+      "pluginVersion": "7.5.10",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -532,10 +525,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "ftm_eth_transfers",
+          "exemplar": true,
+          "expr": "ftm_block_transactions{instance=\"${instance:string}\"}",
           "format": "time_series",
+          "instant": false,
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "ETH Transfers",
+          "legendFormat": "Transactions",
           "refId": "A"
         }
       ],
@@ -543,7 +539,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "ETH Transfers",
+      "title": "Transactions",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -554,13 +550,13 @@
         "buckets": null,
         "mode": "time",
         "name": null,
-        "show": false,
+        "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "locale",
-          "label": null,
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -577,7 +573,7 @@
       ],
       "yaxis": {
         "align": false,
-        "alignLevel": null
+        "alignLevel": 1
       }
     },
     {
@@ -589,6 +585,11 @@
         "#64b0c8",
         "#d44a3a"
       ],
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "format": "locale",
       "gauge": {
         "maxValue": 100,
@@ -640,10 +641,13 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "ftm_eth_transfers",
+          "exemplar": true,
+          "expr": "ftm_eth_transfers{instance=\"${instance:string}\"}",
           "format": "time_series",
           "instant": true,
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -670,6 +674,11 @@
         "#64b0c8",
         "#d44a3a"
       ],
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "format": "locale",
       "gauge": {
         "maxValue": 100,
@@ -721,10 +730,13 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "ftm_token_transfers",
+          "exemplar": true,
+          "expr": "ftm_token_transfers{instance=\"${instance:string}\"}",
           "format": "time_series",
           "instant": true,
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -751,6 +763,11 @@
         "#64b0c8",
         "#d44a3a"
       ],
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "format": "locale",
       "gauge": {
         "maxValue": 100,
@@ -802,10 +819,13 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "ftm_pending_transactions",
+          "exemplar": true,
+          "expr": "ftm_pending_transactions{instance=\"${instance:string}\"}",
           "format": "time_series",
           "instant": true,
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -830,13 +850,20 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "fill": 10,
+      "fillGradient": 0,
       "gridPos": {
         "h": 4,
         "w": 4,
         "x": 0,
         "y": 11
       },
+      "hiddenSeries": false,
       "id": 8,
       "legend": {
         "avg": false,
@@ -851,7 +878,11 @@
       "linewidth": 0,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
+      "pluginVersion": "7.5.10",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -861,8 +892,10 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "ftm_block_size_bytes",
+          "exemplar": true,
+          "expr": "ftm_block_size_bytes{instance=\"${instance:string}\"}",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 3,
           "legendFormat": "Token Transfers",
           "refId": "A"
@@ -917,13 +950,20 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "fill": 10,
+      "fillGradient": 0,
       "gridPos": {
         "h": 4,
         "w": 5,
         "x": 16,
         "y": 11
       },
+      "hiddenSeries": false,
       "id": 10,
       "legend": {
         "avg": false,
@@ -938,7 +978,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
+      "pluginVersion": "7.5.10",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -948,7 +992,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "ftm_gas_price / 1000000000",
+          "exemplar": true,
+          "expr": "ftm_gas_price{instance=\"${instance:string}\"} / 1000000000",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1007,6 +1052,11 @@
         "#c15c17",
         "#d44a3a"
       ],
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "format": "locale",
       "gauge": {
         "maxValue": 120,
@@ -1058,10 +1108,13 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "ftm_gas_price / 1000000000",
+          "exemplar": true,
+          "expr": "ftm_gas_price{instance=\"${instance:string}\"} / 1000000000",
           "format": "time_series",
           "instant": true,
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -1081,33 +1134,46 @@
     },
     {
       "aliasColors": {
-        "Difficulty": "rgb(199, 70, 70)"
+        "ETH Transfers": "#629e51"
       },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "fill": 10,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
-        "w": 6,
+        "w": 12,
         "x": 4,
         "y": 13
       },
-      "id": 18,
+      "hiddenSeries": false,
+      "id": 14,
       "legend": {
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": false,
         "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
+      "pluginVersion": "7.5.10",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1117,10 +1183,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "ftm_block_difficulty / 10000000000000",
+          "exemplar": true,
+          "expr": "ftm_eth_transfers{instance=\"${instance:string}\"}",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Difficulty",
+          "legendFormat": "ETH Transfers",
           "refId": "A"
         }
       ],
@@ -1128,93 +1196,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Block Difficulty",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": false,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "locale",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {
-        "Nonce": "rgb(84, 84, 84)"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 10,
-      "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 10,
-        "y": 13
-      },
-      "id": 20,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": true,
-      "targets": [
-        {
-          "expr": "ftm_block_nonce / 1000000000000000000",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Nonce",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Block Nonce",
+      "title": "ETH Transfers",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1258,13 +1240,20 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 4,
         "w": 4,
         "x": 0,
         "y": 15
       },
+      "hiddenSeries": false,
       "id": 9,
       "legend": {
         "avg": false,
@@ -1279,7 +1268,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
+      "pluginVersion": "7.5.10",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1289,8 +1282,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "ftm_block_gas_used",
+          "exemplar": true,
+          "expr": "ftm_block_gas_used{instance=\"${instance:string}\"}",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 3,
           "legendFormat": "Token Transfers",
           "refId": "A"
@@ -1306,7 +1301,6 @@
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": false,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1345,13 +1339,20 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 4,
         "w": 8,
         "x": 16,
         "y": 15
       },
+      "hiddenSeries": false,
       "id": 17,
       "legend": {
         "avg": false,
@@ -1368,7 +1369,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
+      "pluginVersion": "7.5.10",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1378,8 +1383,10 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "ftm_contracts_created",
+          "exemplar": true,
+          "expr": "ftm_contracts_created{instance=\"${instance:string}\"}",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 2,
           "legendFormat": "Contracts",
           "refId": "A"
@@ -1436,7 +1443,12 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
+      "datasource": null,
       "decimals": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "format": "s",
       "gauge": {
         "maxValue": 1,
@@ -1488,10 +1500,13 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "ftm_load_time",
+          "exemplar": true,
+          "expr": "ftm_load_time{instance=\"${instance:string}\"}",
           "format": "time_series",
           "instant": true,
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -1511,19 +1526,224 @@
     },
     {
       "aliasColors": {
+        "Difficulty": "rgb(199, 70, 70)"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 10,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 4,
+        "y": 19
+      },
+      "hiddenSeries": false,
+      "id": 18,
+      "legend": {
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.10",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "ftm_block_difficulty{instance=\"${instance:string}\"} / 10000000000000",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Difficulty",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Block Difficulty",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": false,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "locale",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "Nonce": "rgb(84, 84, 84)"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 10,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 10,
+        "y": 19
+      },
+      "hiddenSeries": false,
+      "id": 20,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.10",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": true,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "ftm_block_nonce{instance=\"${instance:string}\"} / 1000000000000000000",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Nonce",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Block Nonce",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": false,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "locale",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
         "gwei": "#0a50a1",
         "transactions": "#cca300"
       },
       "bars": true,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 20,
         "x": 4,
-        "y": 19
+        "y": 25
       },
+      "hiddenSeries": false,
       "id": 29,
       "legend": {
         "avg": false,
@@ -1538,7 +1758,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
+      "pluginVersion": "7.5.10",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1548,7 +1772,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "ftm_pending_transactions",
+          "exemplar": true,
+          "expr": "ftm_pending_transactions{instance=\"${instance:string}\"}",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1599,18 +1824,24 @@
       }
     },
     {
-      "content": "<p align=\"center\" style=\"font-size:30pt\">Today Totals</p>",
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 24,
         "x": 0,
-        "y": 25
+        "y": 31
       },
       "id": 24,
       "links": [],
-      "mode": "html",
-      "title": "",
-      "transparent": false,
+      "options": {
+        "content": "<p align=\"center\" style=\"font-size:30pt\">Today Totals</p>",
+        "mode": "html"
+      },
+      "pluginVersion": "7.5.10",
       "type": "text"
     },
     {
@@ -1622,7 +1853,12 @@
         "rgb(73, 204, 39)",
         "#d44a3a"
       ],
+      "datasource": null,
       "decimals": 2,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "format": "locale",
       "gauge": {
         "maxValue": 100,
@@ -1635,7 +1871,7 @@
         "h": 7,
         "w": 7,
         "x": 0,
-        "y": 28
+        "y": 34
       },
       "hideTimeOverride": false,
       "id": 25,
@@ -1675,10 +1911,13 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(ftm_block_value)",
+          "exemplar": true,
+          "expr": "sum(ftm_block_value{instance=\"${instance:string}\"})",
           "format": "time_series",
           "instant": false,
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -1702,13 +1941,20 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 17,
         "x": 7,
-        "y": 28
+        "y": 34
       },
+      "hiddenSeries": false,
       "id": 26,
       "legend": {
         "avg": false,
@@ -1723,7 +1969,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
+      "pluginVersion": "7.5.10",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1733,8 +1983,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "ftm_block_transactions",
+          "exemplar": true,
+          "expr": "ftm_block_transactions{instance=\"${instance:string}\"}",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Transactions",
           "refId": "A"
@@ -1783,11 +2035,54 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 16,
+  "schemaVersion": 27,
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "fantom-gcp-node",
+          "value": "fantom-gcp-node"
+        },
+        "datasource": null,
+        "definition": "label_values(ftm_block, instance)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "instance",
+        "options": [
+          {
+            "selected": true,
+            "text": "fantom-gcp-node",
+            "value": "fantom-gcp-node"
+          },
+          {
+            "selected": false,
+            "text": "fantom-hetzner-node",
+            "value": "fantom-hetzner-node"
+          }
+        ],
+        "query": {
+          "query": "label_values(ftm_block, instance)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
     "from": "now-3h",
@@ -1819,7 +2114,7 @@
     ]
   },
   "timezone": "",
-  "title": "ftm Server",
-  "uid": "FDX6YtOiz",
-  "version": 95
+  "title": "FTM Server",
+  "uid": "XUzlgZ77k",
+  "version": 7
 }
