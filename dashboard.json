@@ -124,7 +124,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_block",
+          "expr": "ftm_block",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -183,7 +183,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_block_transactions",
+          "expr": "ftm_block_transactions",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -272,7 +272,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_eth_transfers",
+          "expr": "ftm_eth_transfers",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -281,7 +281,7 @@
           "refId": "A"
         },
         {
-          "expr": "geth_token_transfers",
+          "expr": "ftm_token_transfers",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Tokens",
@@ -390,7 +390,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_block_value",
+          "expr": "ftm_block_value",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -471,7 +471,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_seconds_last_block",
+          "expr": "ftm_seconds_last_block",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -532,7 +532,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_eth_transfers",
+          "expr": "ftm_eth_transfers",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "ETH Transfers",
@@ -640,7 +640,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_eth_transfers",
+          "expr": "ftm_eth_transfers",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -721,7 +721,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_token_transfers",
+          "expr": "ftm_token_transfers",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -802,7 +802,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_pending_transactions",
+          "expr": "ftm_pending_transactions",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -861,7 +861,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "geth_block_size_bytes",
+          "expr": "ftm_block_size_bytes",
           "format": "time_series",
           "intervalFactor": 3,
           "legendFormat": "Token Transfers",
@@ -948,7 +948,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_gas_price / 1000000000",
+          "expr": "ftm_gas_price / 1000000000",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1058,7 +1058,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_gas_price / 1000000000",
+          "expr": "ftm_gas_price / 1000000000",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1117,7 +1117,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_block_difficulty / 10000000000000",
+          "expr": "ftm_block_difficulty / 10000000000000",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Difficulty",
@@ -1203,7 +1203,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "geth_block_nonce / 1000000000000000000",
+          "expr": "ftm_block_nonce / 1000000000000000000",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Nonce",
@@ -1289,7 +1289,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_block_gas_used",
+          "expr": "ftm_block_gas_used",
           "format": "time_series",
           "intervalFactor": 3,
           "legendFormat": "Token Transfers",
@@ -1378,7 +1378,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "geth_contracts_created",
+          "expr": "ftm_contracts_created",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Contracts",
@@ -1488,7 +1488,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_load_time",
+          "expr": "ftm_load_time",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1548,7 +1548,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_pending_transactions",
+          "expr": "ftm_pending_transactions",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1675,7 +1675,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(geth_block_value)",
+          "expr": "sum(ftm_block_value)",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1733,7 +1733,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_block_transactions",
+          "expr": "ftm_block_transactions",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Transactions",
@@ -1819,7 +1819,7 @@
     ]
   },
   "timezone": "",
-  "title": "Geth Server",
+  "title": "ftm Server",
   "uid": "FDX6YtOiz",
   "version": 95
 }
