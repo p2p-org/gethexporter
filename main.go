@@ -47,6 +47,7 @@ type GethInfo struct {
 	SugGasPrice      *big.Int
 	PendingTx        uint
 	NetworkId        *big.Int
+	BlockAge         uint64
 }
 
 type Address struct {
@@ -126,6 +127,7 @@ func Routine() {
 			time.Sleep(time.Duration(delay) * time.Millisecond)
 			continue
 		}
+		geth.BlockAge = uint64(time.Now().Unix()) - geth.CurrentBlock.Header().Time
 		geth.SugGasPrice, _ = eth.SuggestGasPrice(ctx)
 		geth.PendingTx, _ = eth.PendingTransactionCount(ctx)
 		geth.NetworkId, _ = eth.NetworkID(ctx)
@@ -134,7 +136,7 @@ func Routine() {
 		if lastBlock == nil || geth.CurrentBlock.NumberU64() > lastBlock.NumberU64() {
 			log.Printf("Received block #%v with %v transactions (%v)\n", geth.CurrentBlock.NumberU64(), len(geth.CurrentBlock.Transactions()), geth.CurrentBlock.Hash().String())
 			geth.LastBlockUpdate = time.Now()
-			geth.LoadTime = time.Now().Sub(t1).Seconds()
+			geth.LoadTime = time.Since(t1).Seconds()
 		}
 
 		if watchingAddresses != "" {
@@ -169,7 +171,8 @@ func MetricsHttp(w http.ResponseWriter, r *http.Request) {
 	CalculateTotals(block)
 
 	allOut = append(allOut, fmt.Sprintf("ftm_block %v", block.NumberU64()))
-	allOut = append(allOut, fmt.Sprintf("ftm_seconds_last_block %0.2f", time.Now().Sub(geth.LastBlockUpdate).Seconds()))
+	allOut = append(allOut, fmt.Sprintf("ftm_seconds_last_block %0.2f", time.Since(geth.LastBlockUpdate).Seconds()))
+	allOut = append(allOut, fmt.Sprintf("ftm_block_age %v", geth.BlockAge))
 	allOut = append(allOut, fmt.Sprintf("ftm_block_transactions %v", len(block.Transactions())))
 	allOut = append(allOut, fmt.Sprintf("ftm_block_value %v", ToEther(geth.TotalEth)))
 	allOut = append(allOut, fmt.Sprintf("ftm_block_gas_used %v", block.GasUsed()))
@@ -203,7 +206,7 @@ func MetricsHttp(w http.ResponseWriter, r *http.Request) {
 
 // stringToFloat will simply convert a string to a float
 func stringToFloat(s string) float64 {
-	amount, _ := strconv.ParseFloat(s, 10)
+	amount, _ := strconv.ParseFloat(s, 64)
 	return amount
 }
 
