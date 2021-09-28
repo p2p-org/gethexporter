@@ -130,7 +130,7 @@ func Routine() {
 		geth.BlockAge = uint64(time.Now().Unix()) - geth.CurrentBlock.Header().Time
 		geth.SugGasPrice, _ = eth.SuggestGasPrice(ctx)
 		geth.PendingTx, _ = eth.PendingTransactionCount(ctx)
-		geth.NetworkId, _ = eth.NetworkID(ctx)
+		geth.NetworkId = big.NewInt(0) //eth.NetworkID(ctx)
 		geth.Sync, _ = eth.SyncProgress(ctx)
 
 		if lastBlock == nil || geth.CurrentBlock.NumberU64() > lastBlock.NumberU64() {
